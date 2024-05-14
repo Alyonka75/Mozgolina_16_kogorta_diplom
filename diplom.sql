@@ -1,8 +1,7 @@
 select c.login,
        count(o.id) as quantity_orders
-from "Orders" as o
-inner join "Couriers" as c on o."courierId"=c.id
-where o."inDelivery"=true
+from "Couriers" as c
+left join  "Orders" as o on c.id=o."courierId" and o."inDelivery"=true
 group by c.login;
 
 
